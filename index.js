@@ -39,9 +39,27 @@ Airplane.prototype.land = function () {
         + It should return a string with `name` and `age`. Example: "Mary, 50"
 */
 
-function Person() {
-
+function Person(name, age) {
+this.name = name;
+this.age = age;
+this.stomach = [];
+ 
 }
+
+Person.prototype.eat = function(someFood){
+   if(this.stomach.length < 10){
+      return this.stomach.push(someFood)};
+      
+};
+
+Person.prototype.poop = function(){
+  this.stomach = [];
+};
+
+ Person.prototype.toString = function(){
+  return `"${this.name}, ${this.age}"`;
+};
+
 
 /*
   TASK 2
@@ -57,9 +75,28 @@ function Person() {
         + The `drive` method should return a string "I ran out of fuel at x miles!" x being `odometer`.
 */
 
-function Car() {
-
+function Car(model, milesPerGallon) {
+this.model = model;
+this.milesPerGallon = milesPerGallon;
+this.tank = 0;
+this.odometer = 0;
 }
+
+Car.prototype.fill = function(gallons){
+this.tank += gallons;
+}
+
+// let distance = 0;
+// Car.prototype.drive = function(distance){
+//   distance =  this.milesPerGallon * this.tank
+//   for( let i = 0; i < this.tank; i++)
+//   if( this.tank > 0){
+//     return this.tank - 1 && (this.odometer + this.milesPerGallon)
+//   }
+//   else{
+//     return`I ran out of fuel at ${this.odometer} miles!`;
+//   };
+// }
 
 /*
   TASK 3
@@ -68,18 +105,25 @@ function Car() {
     - Besides the methods on Person.prototype, babies have the ability to `.play()`:
         + Should return a string "Playing with x", x being the favorite toy.
 */
-function Baby() {
+function Baby(name, age, favoriteToy) {
+this.name = name;
+this.age = age;
+this.favoriteToy = favoriteToy;
 
 }
+ Baby.prototype = Object.create(Person.prototype);
 
+Baby.prototype.play = function(){
+  return `Playing with ${this.favoriteToy}.`;
+}
 /* 
   TASK 4
 
   In your own words explain the four principles for the "this" keyword below:
-  1. 
-  2. 
-  3. 
-  4. 
+  1. window/global objects -- the javascript program, its entirety
+  2. implicit binding -- the object that is to the left of the dot is what the dot aplies to
+  3. new binding -- the new object that is created from the constructor function
+  4. explicit binding -- it overrides the initial object's function and replaces it with something else
 */
 
 
